@@ -1,4 +1,4 @@
-# cedar-docker-keycloak-postgres
+# cedar-docker-keycloak
 Keycloak with Postgres
 
 The content is based on:
@@ -12,8 +12,8 @@ docker build -t cedar-keycloak-postgres .
 
 docker login
 
-docker tag cedar-keycloak-postgres metadatacenter/cedar-keycloak-postgres:0.1.0
-docker push metadatacenter/cedar-keycloak-postgres:0.1.0
+docker tag cedar-keycloak-postgres metadatacenter/cedar-keycloak-postgres:1.0.6
+docker push metadatacenter/cedar-keycloak-postgres:1.0.6
 
 docker tag cedar-keycloak-postgres metadatacenter/cedar-keycloak-postgres:latest
 docker push metadatacenter/cedar-keycloak-postgres:latest
