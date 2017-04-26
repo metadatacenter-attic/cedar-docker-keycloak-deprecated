@@ -13,6 +13,6 @@ ADD themes/cedar /opt/jboss/keycloak/themes/
 
 ADD cedar.realm.json cedar.realm.json
 
-RUN sed -i '' 's/<cedar.host>/'${CEDAR_HOST}'/g' cedar.realm.json
+RUN sed -i 's/<cedar.host>/'${CEDAR_HOST}'/g' cedar.realm.json
 
 CMD ["-b", "0.0.0.0", "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=cedar.realm.json -Dkeycloak.migration.realmName=CEDAR -Dkeycloak.migration.strategy=IGNORE_EXISTING"]

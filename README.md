@@ -8,13 +8,13 @@ https://github.com/jboss-dockerfiles/keycloak/tree/bfd9a115c4f630034461b6cca5f20
 ## Building and pushing to DockerHub:
 
 ````
-docker build -t cedar-keycloak-postgres .
+docker build -t cedar-keycloak .
 
 docker login
 
-docker tag cedar-keycloak-postgres metadatacenter/cedar-keycloak-postgres:1.0.6
-docker push metadatacenter/cedar-keycloak-postgres:1.0.6
+docker tag cedar-keycloak metadatacenter/cedar-keycloak:1.0.6
+docker push metadatacenter/cedar-keycloak:1.0.6
 
-docker tag cedar-keycloak-postgres metadatacenter/cedar-keycloak-postgres:latest
-docker push metadatacenter/cedar-keycloak-postgres:latest
+docker tag cedar-keycloak metadatacenter/cedar-keycloak:latest
+docker push metadatacenter/cedar-keycloak:latest
 ````
