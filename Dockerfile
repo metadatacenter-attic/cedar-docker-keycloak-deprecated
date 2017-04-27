@@ -1,6 +1,6 @@
 FROM jboss/keycloak:3.0.0.Final
 
-RUN mkdir -p /opt/jboss/keycloak/modules/system/layers/base/org/postgresql/jdbc/main;
+RUN mkdir -p /opt/jboss/keycloak/modules/system/layers/base/org/postgresql/jdbc/main
 ADD dependencies/postgresql-9.3-1102-jdbc3.jar /opt/jboss/keycloak/modules/system/layers/base/org/postgresql/jdbc/main/
 
 ADD module.xml /opt/jboss/keycloak/modules/system/layers/base/org/postgresql/jdbc/main/
@@ -11,8 +11,11 @@ ADD dependencies/cedar-keycloak-event-listener-jar-with-dependencies.jar /opt/jb
 
 ADD themes/cedar /opt/jboss/keycloak/themes/
 
-ADD cedar.realm.json cedar.realm.json
+RUN mkdir -p /opt/jboss/realm-import
+ADD cedar.realm.json /opt/jboss/realm-import/
 
-RUN sed -i 's/<cedar.host>/'${CEDAR_HOST}'/g' cedar.realm.json
+ADD docker-entrypoint.sh /opt/jboss/
 
-CMD ["-b", "0.0.0.0", "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=cedar.realm.json -Dkeycloak.migration.realmName=CEDAR -Dkeycloak.migration.strategy=IGNORE_EXISTING"]
+ENTRYPOINT [ "/opt/jboss/docker-entrypoint.sh" ]
+
+CMD ["-b", "0.0.0.0", "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/opt/jboss/realm-import/cedar.realm.json -Dkeycloak.migration.realmName=CEDAR -Dkeycloak.migration.strategy=IGNORE_EXISTING"]
